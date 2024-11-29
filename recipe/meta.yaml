@@ -10,7 +10,7 @@ source:
   sha256: dd2c6f80360c36c074f867d2a52cd3b3469fe73ead22aefe2c20d7a1613b1d0c
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
@@ -21,7 +21,7 @@ requirements:
     - setuptools
   run:
     - python <3
-    - astropy
+    - astropy-base
     - healpy
     - numpy
     - python-lalinference
