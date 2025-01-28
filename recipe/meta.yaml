@@ -6,21 +6,21 @@ package:
   version: "{{ version }}"
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: dd2c6f80360c36c074f867d2a52cd3b3469fe73ead22aefe2c20d7a1613b1d0c
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
 requirements:
   host:
-    - python <3
+    - python {{ python_min }}
     - pip
     - setuptools
   run:
-    - python <3
+    - python >={{ python_min }},<3
     - astropy
     - healpy
     - numpy
@@ -29,6 +29,8 @@ requirements:
     - six
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - sky_area
     - sky_area.eigenframe
